@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Viewer from 'react-viewer';
 
 class HeaderViewer extends React.Component {
@@ -7,23 +7,19 @@ class HeaderViewer extends React.Component {
   };
 
   openImage = () => {
-    this.setState({visible: !this.state.visible});
-  }
+    this.setState({ visible: !this.state.visible });
+  };
 
-  closeImage = () =>  {
-    this.setState({visible: false});
-  }
+  closeImage = () => {
+    this.setState({ visible: false });
+  };
 
   render() {
-    const {src = '', alt = ''} = this.props;
+    const { src = '', alt = '' } = this.props;
     return (
-      <Viewer
-        visible={this.state.visible}
-        onClose={this.closeImage}
-        images={[{src, alt}]}
-      />
+      <Viewer visible={this.state.visible} onClose={this.closeImage} images={[{ src, alt }]} />
     );
   }
 }
 
-export default HeaderViewer
+export default HeaderViewer;

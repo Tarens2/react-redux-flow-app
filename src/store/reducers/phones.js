@@ -1,12 +1,10 @@
 const phones = (state = [], action) => {
   switch (action.type) {
     case 'SET_PHONES':
-      return [
-        ...action.phones
-      ]
+      return [...action.phones];
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default phones
+export default phones;

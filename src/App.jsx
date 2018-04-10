@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
@@ -8,25 +8,14 @@ import Router from './pages/Router';
 import { fetchPhones } from './store/actions/index';
 
 const loggerMiddleware = createLogger();
-const store = createStore(
-  phoneStoreApp,
-  applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware,
-  ),
-);
-
+const store = createStore(phoneStoreApp, applyMiddleware(thunkMiddleware, loggerMiddleware));
 
 store.dispatch(fetchPhones());
 
-class App extends Component {
-  render() {
-    return (
-      <Provider className="App" store={store}>
-        <Router />
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider className="App" store={store}>
+    <Router />
+  </Provider>
+);
 
 export default App;

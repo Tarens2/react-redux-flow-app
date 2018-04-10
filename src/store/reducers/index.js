@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux'
-import wishList from './wishList'
-import phones from './phones'
-import order from './order'
+import { combineReducers } from 'redux';
+import wishList from './wishList';
+import phones from './phones';
+import order from './order';
 
 const phoneStoreApp = combineReducers({
   wishList,
   phones,
-  order
-})
+  order,
+});
 
-export default phoneStoreApp
+export default phoneStoreApp;
