@@ -16,9 +16,8 @@ const mapStateToProps = state => ({
   orderCount: state.order.phones.reduce((orderCount, orderItem) => orderCount + orderItem.count, 0),
   orderPrice: state.order.phones.reduce(
     (orderPrice, orderItem) =>
-      orderPrice +
-      (orderItem.count * state.phones.find(phone => phone.id === orderItem.id).price, 0),
-    [],
+      orderPrice + (orderItem.count * state.phones.find(phone => phone.id === orderItem.id).price)
+    , 0,
   ),
 });
 

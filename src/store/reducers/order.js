@@ -6,6 +6,7 @@ type State = {
   +phones: Array<OrderPhone>,
   +currentPhone: number,
 };
+
 type Action = {
   +type: string,
   +id?: number,

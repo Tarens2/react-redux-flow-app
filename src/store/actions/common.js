@@ -43,7 +43,7 @@ export const setWishList = (wishList: Array<WishListPhone>) => ({
 export const fetchPhones = () => (dispatch: Dispatch) =>
   axios
     .get('/api/phones.json')
-    .then(response => response.data, error => console.error(error))
+    .then(response => response.data)
     .then((json) => {
       dispatch(setPhones(json.phones));
       const orderPhones = localStorage.getItem('info')
@@ -54,15 +54,17 @@ export const fetchPhones = () => (dispatch: Dispatch) =>
         ? JSON.parse(localStorage.getItem('info')).wishList
         : [];
       dispatch(setWishList(wishListPhones));
-    });
+    })
+    .catch(error => console.error(error));
 
 export const submitOrder = (submitData: Function) => (dispatch: Dispatch) =>
   axios
     .get('/api/order.json', submitData)
-    .then(response => response.data, error => console.error(error))
+    .then(response => response.data)
     .then(() => {
       submitData.phones.forEach(phone => dispatch(removePhoneOrder(phone)));
-    });
+    })
+    .catch(error => console.error(error));
 
 export const setInfoToStorage = () => (dispatch: Dispatch, getState: GetState) => {
   localStorage.setItem(
