@@ -7,12 +7,8 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';
-import Slide from 'material-ui/transitions/Slide';
 import CardImage from './CardImage';
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
 
 class DialogOrder extends React.Component {
   state = {
@@ -50,7 +46,6 @@ class DialogOrder extends React.Component {
       <div>
         <Dialog
           open={isOpened}
-          transition={Transition}
           keepMounted
           onClose={this.handleClose}
           onEnter={this.handleOpen}

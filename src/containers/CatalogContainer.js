@@ -4,7 +4,8 @@ import Catalog from '../components/Catalog/Catalog';
 
 const mapStateToProps = (state, { wishList = false }) => ({
   // если не wishList то показываем все телефоны, иначе фильтруем
-  phones: state.phones.filter(phone => !wishList || state.wishList.find(wish => wish.id === phone.id)),
+  phones: state.phones
+    .filter(phone => !wishList || state.wishList.find(wish => wish.id === phone.id)),
   wishList: state.wishList,
 });
 const mapDispatchToProps = dispatch => ({

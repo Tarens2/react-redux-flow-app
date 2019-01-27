@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { ListItemText } from 'material-ui';
+import { IntervalID } from 'flow-bin';
 
 const formatWord = (min, titles) => {
   const cases = [2, 0, 1, 1, 1, 2];
@@ -43,14 +44,13 @@ type State = {
   time: number,
   name: string,
   formatedTime: string,
-  intervalId: IntervalID | number,
+  intervalId?: IntervalID,
 };
 class DateFormater extends React.Component<Props, State> {
   state = {
     time: this.props.time,
     name: this.props.name,
     formatedTime: '',
-    intervalId: 0,
   };
 
   componentDidMount = () => {
@@ -58,7 +58,9 @@ class DateFormater extends React.Component<Props, State> {
   };
 
   componentWillUnmount = () => {
-    clearInterval(this.state.intervalId);
+    if (this.state.intervalId) {
+      clearInterval(this.state.intervalId);
+    }
   };
 
   setFormatTimer = () => {

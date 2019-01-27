@@ -1,11 +1,14 @@
+// @flow
+
 import React from 'react';
 import { Grid } from 'material-ui';
 import CatalogItem from './CatalogItem';
+import { CatalogProps } from '../../flowTypes';
 
 const Catalog = ({
   phones, onClickToWishList, wishList, openOrderDialog,
-}) => (
-  <Grid container>
+} : CatalogProps) => (
+  <Grid container spacing={8}>
     {phones.map(phone => (
       <CatalogItem
         phone={phone}

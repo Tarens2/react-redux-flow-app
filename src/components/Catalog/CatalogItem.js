@@ -4,9 +4,11 @@ import { Button, Card, CardActions, CardContent, Grid, IconButton, Typography } 
 import FavoriteBorder from 'material-ui-icons/FavoriteBorder';
 import Favorite from 'material-ui-icons/Favorite';
 import CardImage from './CardImage';
+import { Phone } from '../../flowTypes';
+
 
 type Props = {
-  phone: Object,
+  phone: Phone,
   onClickToWishList: Function,
   isInWishList: boolean,
   openOrderDialog: Function,

@@ -2,23 +2,45 @@
 
 import axios from 'axios';
 import { removePhoneOrder } from './order';
+import { Phone, OrderPhone, WishListPhone } from '../../flowTypes';
+import { State } from '../reducers';
 
-export const setPhones = phones => ({
+type Action =
+  | {
+      type: 'SET_PHONES',
+      phones: Array<Phone>,
+    }
+  | {
+      type: 'SET_ORDER',
+      orderPhones: Array<OrderPhone>,
+    }
+  | {
+      type: 'SET_WISH_LIST',
+      wishList: Array<WishListPhone>,
+    };
+
+type GetState = () => State;
+type PromiseAction = Promise<Action>;
+// eslint-disable-next-line no-use-before-define
+type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
+type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
+
+export const setPhones = (phones: Array<Phone>): Action => ({
   type: 'SET_PHONES',
   phones,
 });
 
-export const setOrder = orderPhones => ({
+export const setOrder = (orderPhones: Array<OrderPhone>) => ({
   type: 'SET_ORDER',
   orderPhones,
 });
 
-export const setWishList = wishList => ({
+export const setWishList = (wishList: Array<WishListPhone>) => ({
   type: 'SET_WISH_LIST',
   wishList,
 });
 
-export const fetchPhones = () => dispatch =>
+export const fetchPhones = () => (dispatch: Dispatch) =>
   axios
     .get('/api/phones.json')
     .then(response => response.data, error => console.error(error))
@@ -34,8 +56,7 @@ export const fetchPhones = () => dispatch =>
       dispatch(setWishList(wishListPhones));
     });
 
-export const submitOrder = submitData => dispatch =>
-  // написал бы post
+export const submitOrder = (submitData: Function) => (dispatch: Dispatch) =>
   axios
     .get('/api/order.json', submitData)
     .then(response => response.data, error => console.error(error))
@@ -43,7 +64,7 @@ export const submitOrder = submitData => dispatch =>
       submitData.phones.forEach(phone => dispatch(removePhoneOrder(phone)));
     });
 
-export const setInfoToStorage = () => (dispatch, getState) => {
+export const setInfoToStorage = () => (dispatch: Dispatch, getState: GetState) => {
   localStorage.setItem(
     'info',
     JSON.stringify({

@@ -17,12 +17,15 @@ class CardImage extends React.Component<Props, State> {
   state = {
     visible: false,
   };
+
   openImage = () => {
     this.setState({ visible: !this.state.visible });
   };
+
   closeImage = () => {
     this.setState({ visible: false });
   };
+
   render() {
     const { src = '', alt, style } = this.props;
     style.backgroundSize = 'auto 100%';

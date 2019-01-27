@@ -1,7 +1,18 @@
+// @flow
+
 import React from 'react';
 import Viewer from 'react-viewer';
 
-class HeaderViewer extends React.Component {
+type State = {
+  visible: Boolean,
+};
+
+type Props = {
+  src: String,
+  alt: String,
+};
+
+class HeaderViewer extends React.Component<Props, State> {
   state = {
     visible: false,
   };

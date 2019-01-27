@@ -1,10 +1,25 @@
+// @flow
+import { OrderPhone } from '../../flowTypes';
+
+type State = {
+  +dialogOpened: boolean,
+  +phones: Array<OrderPhone>,
+  +currentPhone: number,
+};
+type Action = {
+  +type: string,
+  +id?: number,
+  +count: number,
+  +orderPhones: Array<OrderPhone>,
+};
+
 const initialState = {
   dialogOpened: false,
   phones: [],
   currentPhone: -1,
 };
 
-const order = (state = initialState, action) => {
+const order = (state: State = initialState, action: Action) => {
   switch (action.type) {
     case 'OPEN_DIALOG_ORDER':
       return {
