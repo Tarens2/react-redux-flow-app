@@ -29,10 +29,10 @@ const CatalogItem = (props: Props) => {
           <Typography component="p">{phone.price} руб.</Typography>
         </CardContent>
         <CardActions>
-          <IconButton onClick={onClickToWishList.bind(null, phone)}>
+          <IconButton onClick={() => onClickToWishList(phone)}>
             {isInWishList ? <Favorite /> : <FavoriteBorder />}
           </IconButton>
-          <Button variant="raised" color="primary" onClick={openOrderDialog.bind(null, phone)}>
+          <Button variant="raised" color="primary" onClick={() => openOrderDialog(phone)}>
             {' '}
             В корзину
           </Button>

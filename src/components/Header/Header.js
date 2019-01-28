@@ -33,7 +33,7 @@ class Header extends React.Component {
 
   openImage = image => () => {
     this.setState({ currentImage: image });
-    this.refs.HeaderViewer.openImage();
+    this.viewer.openImage();
     this.handleClose();
   };
 
@@ -105,7 +105,7 @@ class Header extends React.Component {
             </Typography>
           </Button>
         </Toolbar>
-        <HeaderViewer src={this.state.currentImage} ref="HeaderViewer" />
+        <HeaderViewer src={this.state.currentImage} ref={(v) => { this.viewer = v; }} />
       </AppBar>
     );
   }
